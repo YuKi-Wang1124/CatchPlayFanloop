@@ -24,18 +24,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CC851A852DC0D7EE0070A4CB /* CatchPlayFanloop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchPlayFanloop.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC851A9E2DC0D7F00070A4CB /* CatchPlayFanloopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatchPlayFanloopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC851AA82DC0D7F00070A4CB /* CatchPlayFanloopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatchPlayFanloopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC851A852DC0D7EE0070A4CB /* CatchPlayFanLoop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchPlayFanLoop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC851A9E2DC0D7F00070A4CB /* CatchPlayFanLoopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatchPlayFanLoopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC851AA82DC0D7F00070A4CB /* CatchPlayFanLoopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatchPlayFanLoopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		CC851AB02DC0D7F00070A4CB /* Exceptions for "CatchPlayFanloop" folder in "CatchPlayFanloop" target */ = {
+		CC851AB02DC0D7F00070A4CB /* Exceptions for "CatchPlayFanloop" folder in "CatchPlayFanLoop" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = CC851A842DC0D7EE0070A4CB /* CatchPlayFanloop */;
+			target = CC851A842DC0D7EE0070A4CB /* CatchPlayFanLoop */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -43,7 +43,7 @@
 		CC851A872DC0D7EE0070A4CB /* CatchPlayFanloop */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				CC851AB02DC0D7F00070A4CB /* Exceptions for "CatchPlayFanloop" folder in "CatchPlayFanloop" target */,
+				CC851AB02DC0D7F00070A4CB /* Exceptions for "CatchPlayFanloop" folder in "CatchPlayFanLoop" target */,
 			);
 			path = CatchPlayFanloop;
 			sourceTree = "<group>";
@@ -98,9 +98,9 @@
 		CC851A862DC0D7EE0070A4CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CC851A852DC0D7EE0070A4CB /* CatchPlayFanloop.app */,
-				CC851A9E2DC0D7F00070A4CB /* CatchPlayFanloopTests.xctest */,
-				CC851AA82DC0D7F00070A4CB /* CatchPlayFanloopUITests.xctest */,
+				CC851A852DC0D7EE0070A4CB /* CatchPlayFanLoop.app */,
+				CC851A9E2DC0D7F00070A4CB /* CatchPlayFanLoopTests.xctest */,
+				CC851AA82DC0D7F00070A4CB /* CatchPlayFanLoopUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,9 +108,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CC851A842DC0D7EE0070A4CB /* CatchPlayFanloop */ = {
+		CC851A842DC0D7EE0070A4CB /* CatchPlayFanLoop */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CC851AB12DC0D7F00070A4CB /* Build configuration list for PBXNativeTarget "CatchPlayFanloop" */;
+			buildConfigurationList = CC851AB12DC0D7F00070A4CB /* Build configuration list for PBXNativeTarget "CatchPlayFanLoop" */;
 			buildPhases = (
 				CC851A812DC0D7EE0070A4CB /* Sources */,
 				CC851A822DC0D7EE0070A4CB /* Frameworks */,
@@ -123,16 +123,16 @@
 			fileSystemSynchronizedGroups = (
 				CC851A872DC0D7EE0070A4CB /* CatchPlayFanloop */,
 			);
-			name = CatchPlayFanloop;
+			name = CatchPlayFanLoop;
 			packageProductDependencies = (
 			);
 			productName = CatchPlayFanloop;
-			productReference = CC851A852DC0D7EE0070A4CB /* CatchPlayFanloop.app */;
+			productReference = CC851A852DC0D7EE0070A4CB /* CatchPlayFanLoop.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CC851A9D2DC0D7F00070A4CB /* CatchPlayFanloopTests */ = {
+		CC851A9D2DC0D7F00070A4CB /* CatchPlayFanLoopTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CC851AB62DC0D7F00070A4CB /* Build configuration list for PBXNativeTarget "CatchPlayFanloopTests" */;
+			buildConfigurationList = CC851AB62DC0D7F00070A4CB /* Build configuration list for PBXNativeTarget "CatchPlayFanLoopTests" */;
 			buildPhases = (
 				CC851A9A2DC0D7F00070A4CB /* Sources */,
 				CC851A9B2DC0D7F00070A4CB /* Frameworks */,
@@ -146,16 +146,16 @@
 			fileSystemSynchronizedGroups = (
 				CC851AA12DC0D7F00070A4CB /* CatchPlayFanloopTests */,
 			);
-			name = CatchPlayFanloopTests;
+			name = CatchPlayFanLoopTests;
 			packageProductDependencies = (
 			);
 			productName = CatchPlayFanloopTests;
-			productReference = CC851A9E2DC0D7F00070A4CB /* CatchPlayFanloopTests.xctest */;
+			productReference = CC851A9E2DC0D7F00070A4CB /* CatchPlayFanLoopTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CC851AA72DC0D7F00070A4CB /* CatchPlayFanloopUITests */ = {
+		CC851AA72DC0D7F00070A4CB /* CatchPlayFanLoopUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CC851AB92DC0D7F00070A4CB /* Build configuration list for PBXNativeTarget "CatchPlayFanloopUITests" */;
+			buildConfigurationList = CC851AB92DC0D7F00070A4CB /* Build configuration list for PBXNativeTarget "CatchPlayFanLoopUITests" */;
 			buildPhases = (
 				CC851AA42DC0D7F00070A4CB /* Sources */,
 				CC851AA52DC0D7F00070A4CB /* Frameworks */,
@@ -169,11 +169,11 @@
 			fileSystemSynchronizedGroups = (
 				CC851AAB2DC0D7F00070A4CB /* CatchPlayFanloopUITests */,
 			);
-			name = CatchPlayFanloopUITests;
+			name = CatchPlayFanLoopUITests;
 			packageProductDependencies = (
 			);
 			productName = CatchPlayFanloopUITests;
-			productReference = CC851AA82DC0D7F00070A4CB /* CatchPlayFanloopUITests.xctest */;
+			productReference = CC851AA82DC0D7F00070A4CB /* CatchPlayFanLoopUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -199,7 +199,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CC851A802DC0D7EE0070A4CB /* Build configuration list for PBXProject "CatchPlayFanloop" */;
+			buildConfigurationList = CC851A802DC0D7EE0070A4CB /* Build configuration list for PBXProject "CatchPlayFanLoop" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -213,9 +213,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CC851A842DC0D7EE0070A4CB /* CatchPlayFanloop */,
-				CC851A9D2DC0D7F00070A4CB /* CatchPlayFanloopTests */,
-				CC851AA72DC0D7F00070A4CB /* CatchPlayFanloopUITests */,
+				CC851A842DC0D7EE0070A4CB /* CatchPlayFanLoop */,
+				CC851A9D2DC0D7F00070A4CB /* CatchPlayFanLoopTests */,
+				CC851AA72DC0D7F00070A4CB /* CatchPlayFanLoopUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -271,12 +271,12 @@
 /* Begin PBXTargetDependency section */
 		CC851AA02DC0D7F00070A4CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CC851A842DC0D7EE0070A4CB /* CatchPlayFanloop */;
+			target = CC851A842DC0D7EE0070A4CB /* CatchPlayFanLoop */;
 			targetProxy = CC851A9F2DC0D7F00070A4CB /* PBXContainerItemProxy */;
 		};
 		CC851AAA2DC0D7F00070A4CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CC851A842DC0D7EE0070A4CB /* CatchPlayFanloop */;
+			target = CC851A842DC0D7EE0070A4CB /* CatchPlayFanLoop */;
 			targetProxy = CC851AA92DC0D7F00070A4CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -294,7 +294,6 @@
 				INFOPLIST_FILE = CatchPlayFanloop/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,7 +321,6 @@
 				INFOPLIST_FILE = CatchPlayFanloop/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -472,7 +470,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatchPlayFanloop.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CatchPlayFanloop";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatchPlayFanLoop.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CatchPlayFanLoop";
 			};
 			name = Debug;
 		};
@@ -491,7 +489,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatchPlayFanloop.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CatchPlayFanloop";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatchPlayFanLoop.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CatchPlayFanLoop";
 			};
 			name = Release;
 		};
@@ -532,7 +530,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CC851A802DC0D7EE0070A4CB /* Build configuration list for PBXProject "CatchPlayFanloop" */ = {
+		CC851A802DC0D7EE0070A4CB /* Build configuration list for PBXProject "CatchPlayFanLoop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CC851AB42DC0D7F00070A4CB /* Debug */,
@@ -541,7 +539,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CC851AB12DC0D7F00070A4CB /* Build configuration list for PBXNativeTarget "CatchPlayFanloop" */ = {
+		CC851AB12DC0D7F00070A4CB /* Build configuration list for PBXNativeTarget "CatchPlayFanLoop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CC851AB22DC0D7F00070A4CB /* Debug */,
@@ -550,7 +548,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CC851AB62DC0D7F00070A4CB /* Build configuration list for PBXNativeTarget "CatchPlayFanloopTests" */ = {
+		CC851AB62DC0D7F00070A4CB /* Build configuration list for PBXNativeTarget "CatchPlayFanLoopTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CC851AB72DC0D7F00070A4CB /* Debug */,
@@ -559,7 +557,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CC851AB92DC0D7F00070A4CB /* Build configuration list for PBXNativeTarget "CatchPlayFanloopUITests" */ = {
+		CC851AB92DC0D7F00070A4CB /* Build configuration list for PBXNativeTarget "CatchPlayFanLoopUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CC851ABA2DC0D7F00070A4CB /* Debug */,
