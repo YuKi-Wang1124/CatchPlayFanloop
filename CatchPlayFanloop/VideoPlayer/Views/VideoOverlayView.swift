@@ -12,7 +12,7 @@ import UIKit
 class VideoOverlayView: UIView {
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        label.font = UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .title2).pointSize)
         label.textColor = .white
         label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingTail
