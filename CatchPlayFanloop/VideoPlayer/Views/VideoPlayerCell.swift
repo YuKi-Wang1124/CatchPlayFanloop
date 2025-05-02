@@ -6,3 +6,100 @@
 //
 
 import Foundation
+import UIKit
+import Combine
+
+// MARK: - VideoPlayerCell
+class VideoPlayerCell: UICollectionViewCell {
+    static let identifier = "\(VideoPlayerCell.self)"
+    private let overlayView = VideoOverlayView()
+    let viewModel = VideoPlayerViewModel()
+    private var cancellables = Set<AnyCancellable>()
+    
+    var muteToggleHandler: ((Bool) -> Void)?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        contentView.backgroundColor = .black
+        contentView.clipsToBounds = true
+        contentView.addSubview(overlayView)
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            overlayView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            overlayView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            overlayView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            overlayView.heightAnchor.constraint(equalToConstant: 120)
+        ])
+        overlayView.muteButton.addTarget(self, action: #selector(toggleMute), for: .touchUpInside)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+        viewModel.isMuted = UserDefaults.standard.bool(forKey: "MuteSetting")
+        overlayView.setCollapsed()
+        updateMuteIcon(for: viewModel.isMuted)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        viewModel.updateLayout(frame: contentView.bounds)
+    }
+    
+    private func updateMuteIcon(for isMuted: Bool) {
+        overlayView.muteButton.setImage(
+            UIImage(systemName: isMuted ? "speaker.slash.fill" : "speaker.wave.2.fill"),
+            for: .normal
+        )
+    }
+    
+    func configure(with video: Video, isMuted: Bool) {
+        overlayView.titleLabel.text = video.title
+        overlayView.descriptionLabel.text = video.description
+
+        viewModel.onReadyToPlay = { [weak self] layer in
+            guard let self = self else { return }
+            self.contentView.layer.insertSublayer(layer, below: self.overlayView.layer)
+            layer.frame = self.contentView.bounds
+        }
+
+        // Always use the latest persisted mute setting
+        let globalMuted = UserDefaults.standard.bool(forKey: "MuteSetting")
+        viewModel.configure(with: video, isMuted: globalMuted)
+
+        cancellables.removeAll()
+
+        viewModel.$isMuted
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isMuted in
+                self?.updateMuteIcon(for: isMuted)
+            }
+            .store(in: &cancellables)
+
+        viewModel.$isPlaying
+            .receive(on: DispatchQueue.main)
+            .sink { isPlaying in
+                print("isPlaying:", isPlaying)
+            }
+            .store(in: &cancellables)
+
+        updateMuteIcon(for: globalMuted)
+    }
+    
+    @objc private func toggleMute() {
+        let newState = !viewModel.isMuted
+        viewModel.isMuted = newState
+        UserDefaults.standard.set(newState, forKey: "MuteSetting")
+        muteToggleHandler?(newState)
+    }
+    
+    func syncMuteIcon() {
+        updateMuteIcon(for: viewModel.isMuted)
+    }
+}
+

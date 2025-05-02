@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+extension UserDefaults {
+    private enum Keys {
+        static let muteSetting = "MuteSetting"
+    }
+
+    var isMuted: Bool {
+        get { bool(forKey: Keys.muteSetting) }
+        set { set(newValue, forKey: Keys.muteSetting) }
+    }
+}
