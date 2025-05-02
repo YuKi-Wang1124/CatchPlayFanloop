@@ -36,6 +36,8 @@
 		CC7B8B702DC47E0C006361C2 /* 14.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CC7B8B612DC47E0C006361C2 /* 14.mp4 */; };
 		CC7B8B712DC47E0C006361C2 /* 10.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CC7B8B5D2DC47E0C006361C2 /* 10.mp4 */; };
 		CC7B8B722DC47E0C006361C2 /* 15.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CC7B8B622DC47E0C006361C2 /* 15.mp4 */; };
+		CC7B8B752DC48EF2006361C2 /* VideoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B8B742DC48EF2006361C2 /* VideoOverlayView.swift */; };
+		CC7B8B782DC48F4A006361C2 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7B8B772DC48F4A006361C2 /* Video.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		CC7B8B632DC47E0C006361C2 /* 16.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 16.mp4; sourceTree = "<group>"; };
 		CC7B8B642DC47E0C006361C2 /* 17.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 17.mp4; sourceTree = "<group>"; };
 		CC7B8B652DC47E0C006361C2 /* 18.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 18.mp4; sourceTree = "<group>"; };
+		CC7B8B742DC48EF2006361C2 /* VideoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoOverlayView.swift; sourceTree = "<group>"; };
+		CC7B8B772DC48F4A006361C2 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		CC851A852DC0D7EE0070A4CB /* CatchPlayFanLoop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatchPlayFanLoop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC851A9E2DC0D7F00070A4CB /* CatchPlayFanLoopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatchPlayFanLoopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC851AA82DC0D7F00070A4CB /* CatchPlayFanLoopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatchPlayFanLoopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +195,8 @@
 		CC7B8B2F2DC24CE3006361C2 /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				CC7B8B762DC48F3D006361C2 /* Model */,
+				CC7B8B732DC48EE0006361C2 /* Views */,
 				CC7B8AF02DC22BB8006361C2 /* ViewController.swift */,
 			);
 			path = VideoPlayer;
@@ -205,6 +211,22 @@
 				CC7B8AEA2DC22BB8006361C2 /* Assets.xcassets */,
 			);
 			path = SpportingFiles;
+			sourceTree = "<group>";
+		};
+		CC7B8B732DC48EE0006361C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CC7B8B742DC48EF2006361C2 /* VideoOverlayView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CC7B8B762DC48F3D006361C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CC7B8B772DC48F4A006361C2 /* Video.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CC851A7C2DC0D7EE0070A4CB = {
@@ -384,6 +406,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC7B8B752DC48EF2006361C2 /* VideoOverlayView.swift in Sources */,
+				CC7B8B782DC48F4A006361C2 /* Video.swift in Sources */,
 				CC7B8AF32DC22BB8006361C2 /* AppDelegate.swift in Sources */,
 				CC7B8AF42DC22BB8006361C2 /* CatchPlayFanloop.xcdatamodeld in Sources */,
 				CC7B8AF52DC22BB8006361C2 /* SceneDelegate.swift in Sources */,

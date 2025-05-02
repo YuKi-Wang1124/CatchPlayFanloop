@@ -9,74 +9,99 @@ import UIKit
 import AVKit
 import Combine
 
-// MARK: -
+// MARK: - VideoOverlayView
 class VideoOverlayView: UIView {
-    let titleLabel = UILabel()
-    let descriptionLabel = UILabel()
-    let muteButton = UIButton(type: .system)
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        label.textColor = .white
+        label.numberOfLines = 1
+        label.lineBreakMode = .byTruncatingTail
+        label.isUserInteractionEnabled = true
+        return label
+    }()
     
+    let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        label.textColor = .white
+        label.numberOfLines = 1
+        label.lineBreakMode = .byTruncatingTail
+        label.isUserInteractionEnabled = true
+        return label
+    }()
+    
+    let muteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "speaker.slash.fill"), for: .normal)
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    private var isExpanded = false
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupUI() {
-        backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        titleLabel.textColor = .white
-        titleLabel.numberOfLines = 1
-        
-        descriptionLabel.font = UIFont.systemFont(ofSize: 14)
-        descriptionLabel.textColor = .white
-        descriptionLabel.numberOfLines = 2
-        
-        muteButton.setImage(UIImage(systemName: "speaker.slash.fill"), for: .normal)
-        muteButton.tintColor = .white
-        
+        backgroundColor = .clear
+     
         let stack = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel])
         stack.axis = .vertical
         stack.spacing = 4
         stack.alignment = .leading
-        
+
         addSubview(stack)
         addSubview(muteButton)
-        
+
         stack.translatesAutoresizingMaskIntoConstraints = false
-        muteButton.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            stack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -36),
             stack.trailingAnchor.constraint(equalTo: muteButton.leadingAnchor, constant: -8),
-            
+
             muteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            muteButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            muteButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -36),
             muteButton.widthAnchor.constraint(equalToConstant: 24),
             muteButton.heightAnchor.constraint(equalToConstant: 24)
         ])
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleExpandToggle))
+        titleLabel.addGestureRecognizer(tapGesture)
+        descriptionLabel.addGestureRecognizer(tapGesture)
+
+        configureUIState()
+    }
+
+    @objc private func handleExpandToggle() {
+        isExpanded.toggle()
+        configureUIState()
+        UIView.animate(withDuration: 0.25) {
+            self.layoutIfNeeded()
+        }
+    }
+
+    private func configureUIState() {
+        titleLabel.numberOfLines = isExpanded ? 0 : 1
+        descriptionLabel.numberOfLines = isExpanded ? 0 : 1
+    }
+
+    func setCollapsed() {
+        isExpanded = false
+        configureUIState()
     }
 }
 
-// MARK: -
-struct Video: Codable {
-    let id: Int
-    let filename: String
-    let title: String
-    let description: String
-    let hashId: String
-    
-    var url: URL? {
-        Bundle.main.url(forResource: filename.replacingOccurrences(of: ".mp4", with: ""), withExtension: "mp4")
-    }
-}
 
-
-// MARK: -
+// MARK: - VideoPlayerViewModel
 class VideoPlayerViewModel: NSObject {
     private(set) var player: AVQueuePlayer?
     private var playerLayer: AVPlayerLayer?
@@ -84,15 +109,20 @@ class VideoPlayerViewModel: NSObject {
 
     var onReadyToPlay: ((AVPlayerLayer) -> Void)?
 
-    @Published var isMuted: Bool = false
+    @Published var isMuted: Bool = false {
+        didSet {
+            player?.isMuted = isMuted
+        }
+    }
     @Published private(set) var isPlaying: Bool = false
     private var cancellables = Set<AnyCancellable>()
 
     func configure(with video: Video, isMuted: Bool) {
-        self.isMuted = isMuted
+        let globalMuted = UserDefaults.standard.bool(forKey: "MuteSetting")
+        self.isMuted = globalMuted
         guard let url = video.url else { return }
 
-        let asset = AVAsset(url: url)
+        let asset = AVURLAsset(url: url)
         let item = AVPlayerItem(asset: asset)
 
         let queuePlayer = AVQueuePlayer()
@@ -130,6 +160,8 @@ class VideoPlayerCell: UICollectionViewCell {
     let viewModel = VideoPlayerViewModel()
     private var cancellables = Set<AnyCancellable>()
     
+    var muteToggleHandler: ((Bool) -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .black
@@ -148,45 +180,70 @@ class VideoPlayerCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.removeAll()
+        viewModel.isMuted = UserDefaults.standard.bool(forKey: "MuteSetting")
+        overlayView.setCollapsed()
+        updateMuteIcon(for: viewModel.isMuted)
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         viewModel.updateLayout(frame: contentView.bounds)
     }
     
+    private func updateMuteIcon(for isMuted: Bool) {
+        overlayView.muteButton.setImage(
+            UIImage(systemName: isMuted ? "speaker.slash.fill" : "speaker.wave.2.fill"),
+            for: .normal
+        )
+    }
+    
     func configure(with video: Video, isMuted: Bool) {
         overlayView.titleLabel.text = video.title
         overlayView.descriptionLabel.text = video.description
-        
+
         viewModel.onReadyToPlay = { [weak self] layer in
             guard let self = self else { return }
             self.contentView.layer.insertSublayer(layer, below: self.overlayView.layer)
             layer.frame = self.contentView.bounds
         }
-        
+
+        // Always use the latest persisted mute setting
+        let globalMuted = UserDefaults.standard.bool(forKey: "MuteSetting")
+        viewModel.configure(with: video, isMuted: globalMuted)
+
+        cancellables.removeAll()
+
         viewModel.$isMuted
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isMuted in
-                self?.overlayView.muteButton.setImage(
-                    UIImage(systemName: isMuted ? "speaker.slash.fill" : "speaker.wave.2.fill"),
-                    for: .normal
-                )
+                self?.updateMuteIcon(for: isMuted)
             }
             .store(in: &cancellables)
-        
+
         viewModel.$isPlaying
             .receive(on: DispatchQueue.main)
             .sink { isPlaying in
                 print("isPlaying:", isPlaying)
             }
             .store(in: &cancellables)
-        
-        viewModel.configure(with: video, isMuted: isMuted)
+
+        updateMuteIcon(for: globalMuted)
     }
     
     @objc private func toggleMute() {
-        viewModel.isMuted.toggle()
-        viewModel.player?.isMuted = viewModel.isMuted
+        let newState = !viewModel.isMuted
+        viewModel.isMuted = newState
+        UserDefaults.standard.set(newState, forKey: "MuteSetting")
+        muteToggleHandler?(newState)
+    }
+    
+    func syncMuteIcon() {
+        updateMuteIcon(for: viewModel.isMuted)
     }
 }
 
@@ -219,7 +276,13 @@ class VideoListViewModel {
     }
 }
 
+// MARK: - VideoListViewController
 class VideoListViewController: UIViewController {
+    private var isMuted: Bool {
+        get { UserDefaults.standard.bool(forKey: "MuteSetting") }
+        set { UserDefaults.standard.set(newValue, forKey: "MuteSetting") }
+    }
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -229,6 +292,10 @@ class VideoListViewController: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isPagingEnabled = true
+        collectionView.alwaysBounceVertical = false
+        collectionView.bounces = false
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.register(VideoPlayerCell.self, forCellWithReuseIdentifier: "VideoPlayerCell")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -265,7 +332,6 @@ class VideoListViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(VideoPlayerCell.self, forCellWithReuseIdentifier: "VideoPlayerCell")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -273,12 +339,21 @@ class VideoListViewController: UIViewController {
         
         let firstIndexPath = IndexPath(item: 0, section: 0)
         
-        collectionView.layoutIfNeeded()
-        collectionView.scrollToItem(at: firstIndexPath, at: .top, animated: false)
+        DispatchQueue.main.async {
+            self.collectionView.scrollToItem(at: firstIndexPath, at: .top, animated: false)
+        }
         
         guard let video = viewModel.video(at: 0) else { return }
         if let cell = collectionView.cellForItem(at: firstIndexPath) as? VideoPlayerCell {
-            cell.configure(with: video, isMuted: false)
+            cell.configure(with: video, isMuted: isMuted)
+            cell.muteToggleHandler = { [weak self] newMutedState in
+                self?.isMuted = newMutedState
+                self?.collectionView.visibleCells.forEach { visibleCell in
+                    guard let videoCell = visibleCell as? VideoPlayerCell else { return }
+                    videoCell.viewModel.isMuted = newMutedState
+                    videoCell.syncMuteIcon()
+                }
+            }
         }
         currentPlayingIndexPath = IndexPath(item: 0, section: 0)
     }
@@ -335,7 +410,30 @@ extension VideoListViewController: UICollectionViewDelegate, UICollectionViewDat
             return UICollectionViewCell()
         }
         
-        cell.configure(with: video, isMuted: false)
+        cell.configure(with: video, isMuted: isMuted)
+        cell.muteToggleHandler = { [weak self] newMutedState in
+            self?.isMuted = newMutedState
+            self?.collectionView.visibleCells.forEach { visibleCell in
+                guard let videoCell = visibleCell as? VideoPlayerCell else { return }
+                videoCell.viewModel.isMuted = newMutedState
+                videoCell.syncMuteIcon()
+            }
+        }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let videoCell = cell as? VideoPlayerCell else { return }
+        videoCell.viewModel.isMuted = isMuted
+        videoCell.syncMuteIcon()
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension VideoListViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
 }
