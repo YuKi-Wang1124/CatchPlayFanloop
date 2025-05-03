@@ -11,11 +11,6 @@ import Combine
 
 // MARK: - VideoListViewController
 class VideoListViewController: UIViewController {
-    private var isMuted: Bool {
-        get { UserDefaults.standard.isMuted }
-        set { UserDefaults.standard.isMuted = newValue }
-    }
-
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -33,6 +28,11 @@ class VideoListViewController: UIViewController {
         return collectionView
     }()
     
+    private var isMuted: Bool {
+        get { UserDefaults.standard.isMuted }
+        set { UserDefaults.standard.isMuted = newValue }
+    }
+    
     private let viewModel = VideoListViewModel()
     private var cancellables = Set<AnyCancellable>()
     private var currentPlayingIndexPath: IndexPath?
@@ -40,10 +40,10 @@ class VideoListViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
+  
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViewModelBinding()
         viewModel.loadVideoData()
         setupCollectionView()

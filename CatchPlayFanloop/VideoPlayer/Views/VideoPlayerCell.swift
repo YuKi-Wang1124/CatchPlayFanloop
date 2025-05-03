@@ -12,31 +12,27 @@ import Combine
 // MARK: - VideoPlayerCell
 class VideoPlayerCell: UICollectionViewCell {
     static let identifier = "\(VideoPlayerCell.self)"
-    private let overlayView = VideoOverlayView()
+    
+    private let overlayView: VideoOverlayView = {
+        let overlayView = VideoOverlayView()
+        overlayView.muteButton.addTarget(self, action: #selector(toggleMute), for: .touchUpInside)
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
+        return overlayView
+    }()
+    
     let viewModel = VideoPlayerViewModel()
     private var cancellables = Set<AnyCancellable>()
     
     var muteToggleHandler: ((Bool) -> Void)?
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .black
-        contentView.clipsToBounds = true
-        contentView.addSubview(overlayView)
-        overlayView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            overlayView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            overlayView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            overlayView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            overlayView.heightAnchor.constraint(equalToConstant: 120)
-        ])
-        overlayView.muteButton.addTarget(self, action: #selector(toggleMute), for: .touchUpInside)
+        setupCellUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -49,6 +45,18 @@ class VideoPlayerCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         viewModel.updateLayout(frame: contentView.bounds)
+    }
+    
+    private func setupCellUI() {
+        contentView.backgroundColor = .black
+        contentView.clipsToBounds = true
+        contentView.addSubview(overlayView)
+        NSLayoutConstraint.activate([
+            overlayView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            overlayView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            overlayView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            overlayView.heightAnchor.constraint(equalToConstant: 120)
+        ])
     }
     
     private func updateMuteIcon(for isMuted: Bool) {
@@ -68,7 +76,6 @@ class VideoPlayerCell: UICollectionViewCell {
             layer.frame = self.contentView.bounds
         }
 
-        // Always use the latest persisted mute setting
         let globalMuted = UserDefaults.standard.bool(forKey: "MuteSetting")
         viewModel.configure(with: video, isMuted: globalMuted)
 
