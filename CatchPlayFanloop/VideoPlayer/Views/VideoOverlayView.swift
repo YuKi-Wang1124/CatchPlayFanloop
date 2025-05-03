@@ -43,6 +43,7 @@ class VideoOverlayView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        configureUIState()
     }
 
     required init?(coder: NSCoder) {
@@ -76,8 +77,6 @@ class VideoOverlayView: UIView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleExpandToggle))
         titleLabel.addGestureRecognizer(tapGesture)
         descriptionLabel.addGestureRecognizer(tapGesture)
-
-        configureUIState()
     }
 
     @objc private func handleExpandToggle() {

@@ -26,8 +26,7 @@ class VideoPlayerViewModel: NSObject {
     private var cancellables = Set<AnyCancellable>()
 
     func configure(with video: Video, isMuted: Bool) {
-        let globalMuted = UserDefaults.standard.bool(forKey: "MuteSetting")
-        self.isMuted = globalMuted
+        self.isMuted = UserDefaults.standard.isMuted
         guard let url = video.url else { return }
 
         let asset = AVURLAsset(url: url)

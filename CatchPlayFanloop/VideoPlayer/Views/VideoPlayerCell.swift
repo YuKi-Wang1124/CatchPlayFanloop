@@ -37,7 +37,7 @@ class VideoPlayerCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         cancellables.removeAll()
-        viewModel.isMuted = UserDefaults.standard.bool(forKey: "MuteSetting")
+        viewModel.isMuted = UserDefaults.standard.isMuted
         overlayView.setCollapsed()
         updateMuteIcon(for: viewModel.isMuted)
     }
@@ -76,7 +76,7 @@ class VideoPlayerCell: UICollectionViewCell {
             layer.frame = self.contentView.bounds
         }
 
-        let globalMuted = UserDefaults.standard.bool(forKey: "MuteSetting")
+        let globalMuted = UserDefaults.standard.isMuted
         viewModel.configure(with: video, isMuted: globalMuted)
 
         cancellables.removeAll()
@@ -101,7 +101,7 @@ class VideoPlayerCell: UICollectionViewCell {
     @objc private func toggleMute() {
         let newState = !viewModel.isMuted
         viewModel.isMuted = newState
-        UserDefaults.standard.set(newState, forKey: "MuteSetting")
+        UserDefaults.standard.isMuted = newState
         muteToggleHandler?(newState)
     }
     
@@ -109,4 +109,3 @@ class VideoPlayerCell: UICollectionViewCell {
         updateMuteIcon(for: viewModel.isMuted)
     }
 }
-
