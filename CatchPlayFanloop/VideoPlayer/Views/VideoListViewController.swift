@@ -47,6 +47,7 @@ class VideoListViewController: UIViewController {
         setupViewModelBinding()
         viewModel.loadVideoData()
         setupCollectionView()
+        setupInitMuteSetting()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -102,6 +103,10 @@ class VideoListViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    private func setupInitMuteSetting() {
+        UserDefaults.standard.isMuted = true
     }
     
     private func setupCollectionView() {
