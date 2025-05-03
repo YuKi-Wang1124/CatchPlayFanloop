@@ -14,6 +14,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        if UserDefaults.standard.object(forKey: "MuteSetting") == nil {
+            UserDefaults.standard.isMuted = true
+        }
+        
         let window = UIWindow(windowScene: windowScene)
         let rootVC = VideoListViewController()
         window.rootViewController = rootVC
@@ -54,4 +58,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-

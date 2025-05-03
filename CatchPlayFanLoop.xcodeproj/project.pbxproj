@@ -42,6 +42,7 @@
 		CCCFD5DD2DC4AF2100604904 /* VideoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCFD5DC2DC4AF2100604904 /* VideoListViewModel.swift */; };
 		CCCFD5DF2DC4AF4C00604904 /* VideoPlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCFD5DE2DC4AF4C00604904 /* VideoPlayerCell.swift */; };
 		CCCFD5E32DC4B22400604904 /* UserDefaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCFD5E22DC4B22400604904 /* UserDefaults+Keys.swift */; };
+		CCCFD5E82DC653ED00604904 /* UICollectionView+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCFD5E72DC653ED00604904 /* UICollectionView+Cell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		CCCFD5DC2DC4AF2100604904 /* VideoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListViewModel.swift; sourceTree = "<group>"; };
 		CCCFD5DE2DC4AF4C00604904 /* VideoPlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerCell.swift; sourceTree = "<group>"; };
 		CCCFD5E22DC4B22400604904 /* UserDefaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Keys.swift"; sourceTree = "<group>"; };
+		CCCFD5E72DC653ED00604904 /* UICollectionView+Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Cell.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				CCCFD5E22DC4B22400604904 /* UserDefaults+Keys.swift */,
+				CCCFD5E72DC653ED00604904 /* UICollectionView+Cell.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCCFD5E82DC653ED00604904 /* UICollectionView+Cell.swift in Sources */,
 				CCCFD5DB2DC4AEEF00604904 /* VideoPlayerViewModel.swift in Sources */,
 				CC7B8B752DC48EF2006361C2 /* VideoOverlayView.swift in Sources */,
 				CCCFD5E32DC4B22400604904 /* UserDefaults+Keys.swift in Sources */,

@@ -96,7 +96,7 @@ class VideoListViewController: UIViewController {
                           let cell = self.collectionView.cellForItem(at: firstIndexPath) as? VideoPlayerCell,
                           let video = self.viewModel.video(at: firstIndexPath.item) else { return }
 
-                    cell.configure(with: video, isMuted: self.isMuted)
+                    cell.configure(with: video)
                     cell.viewModel.player?.play()
                     self.currentPlayingIndexPath = firstIndexPath
                 }
@@ -130,11 +130,11 @@ extension VideoListViewController: UICollectionViewDelegate, UICollectionViewDat
             return UICollectionViewCell()
         }
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoPlayerCell.identifier, for: indexPath) as? VideoPlayerCell else {
+        guard let cell = collectionView.dequeueCell(ofType: VideoPlayerCell.self, for: indexPath) else {
             return UICollectionViewCell()
         }
         
-        cell.configure(with: video, isMuted: isMuted)
+        cell.configure(with: video)
         cell.muteToggleHandler = { [weak self] newMutedState in
             self?.isMuted = newMutedState
             self?.collectionView.visibleCells.forEach { visibleCell in
@@ -161,3 +161,4 @@ extension VideoListViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
 }
+

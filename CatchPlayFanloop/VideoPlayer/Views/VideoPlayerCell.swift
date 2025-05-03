@@ -13,7 +13,7 @@ import Combine
 class VideoPlayerCell: UICollectionViewCell {
     static let identifier = "\(VideoPlayerCell.self)"
     
-    private let overlayView: VideoOverlayView = {
+    private lazy var overlayView: VideoOverlayView = {
         let overlayView = VideoOverlayView()
         overlayView.muteButton.addTarget(self, action: #selector(toggleMute), for: .touchUpInside)
         overlayView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +48,6 @@ class VideoPlayerCell: UICollectionViewCell {
     }
     
     private func setupCellUI() {
-        contentView.backgroundColor = .black
         contentView.clipsToBounds = true
         contentView.addSubview(overlayView)
         NSLayoutConstraint.activate([
@@ -66,7 +65,7 @@ class VideoPlayerCell: UICollectionViewCell {
         )
     }
     
-    func configure(with video: Video, isMuted: Bool) {
+    func configure(with video: Video) {
         overlayView.titleLabel.text = video.title
         overlayView.descriptionLabel.text = video.description
 
@@ -79,9 +78,25 @@ class VideoPlayerCell: UICollectionViewCell {
         let globalMuted = UserDefaults.standard.isMuted
         viewModel.configure(with: video, isMuted: globalMuted)
 
+        bindViewModel()
+    }
+    
+    @objc private func toggleMute() {
+        let newState = !viewModel.isMuted
+        viewModel.isMuted = newState
+        UserDefaults.standard.isMuted = newState
+        muteToggleHandler?(newState)
+    }
+    
+    func syncMuteIcon() {
+        updateMuteIcon(for: viewModel.isMuted)
+    }
+    
+    private func bindViewModel() {
         cancellables.removeAll()
 
         viewModel.$isMuted
+            .prepend(viewModel.isMuted)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isMuted in
                 self?.updateMuteIcon(for: isMuted)
@@ -94,18 +109,5 @@ class VideoPlayerCell: UICollectionViewCell {
                 print("isPlaying:", isPlaying)
             }
             .store(in: &cancellables)
-
-        updateMuteIcon(for: globalMuted)
-    }
-    
-    @objc private func toggleMute() {
-        let newState = !viewModel.isMuted
-        viewModel.isMuted = newState
-        UserDefaults.standard.isMuted = newState
-        muteToggleHandler?(newState)
-    }
-    
-    func syncMuteIcon() {
-        updateMuteIcon(for: viewModel.isMuted)
     }
 }
