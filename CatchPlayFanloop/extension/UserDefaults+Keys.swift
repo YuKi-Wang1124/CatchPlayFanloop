@@ -8,7 +8,7 @@
 import Foundation
 
 extension UserDefaults {
-    private enum Keys {
+    enum Keys {
         static let muteSetting = "MuteSetting"
     }
 
