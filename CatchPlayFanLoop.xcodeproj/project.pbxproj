@@ -41,8 +41,8 @@
 		CCCFD6702DC6723500604904 /* 17.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CCCFD6662DC6723500604904 /* 17.mp4 */; };
 		CCCFD6712DC6723500604904 /* 8.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CCCFD65D2DC6723500604904 /* 8.mp4 */; };
 		CCCFD6722DC6723500604904 /* 11.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CCCFD6602DC6723500604904 /* 11.mp4 */; };
-		CCCFD6742DC6746500604904 /* 3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CCCFD6732DC6746500604904 /* 3.mp4 */; };
-		CCCFD6762DC6746E00604904 /* 6.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CCCFD6752DC6746E00604904 /* 6.mp4 */; };
+		CCCFD6782DC676A100604904 /* 3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CCCFD6772DC676A100604904 /* 3.mp4 */; };
+		CCCFD67A2DC676A900604904 /* 6.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CCCFD6792DC676A900604904 /* 6.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,8 +101,8 @@
 		CCCFD6652DC6723500604904 /* 16.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 16.mp4; sourceTree = "<group>"; };
 		CCCFD6662DC6723500604904 /* 17.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 17.mp4; sourceTree = "<group>"; };
 		CCCFD6672DC6723500604904 /* 18.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 18.mp4; sourceTree = "<group>"; };
-		CCCFD6732DC6746500604904 /* 3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 3.mp4; sourceTree = "<group>"; };
-		CCCFD6752DC6746E00604904 /* 6.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 6.mp4; sourceTree = "<group>"; };
+		CCCFD6772DC676A100604904 /* 3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 3.mp4; sourceTree = "<group>"; };
+		CCCFD6792DC676A900604904 /* 6.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 6.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,11 +175,11 @@
 				CCCFD64D2DC66F6100604904 /* 0.mp4 */,
 				CCCFD64F2DC66FBA00604904 /* 1.mp4 */,
 				CCCFD6512DC6701B00604904 /* 2.mp4 */,
-				CCCFD6732DC6746500604904 /* 3.mp4 */,
+				CCCFD6772DC676A100604904 /* 3.mp4 */,
 				CCCFD6552DC670F600604904 /* 4.mp4 */,
 				CCCFD6562DC670F600604904 /* 5.mp4 */,
+				CCCFD6792DC676A900604904 /* 6.mp4 */,
 				CCCFD6582DC670F600604904 /* 7.mp4 */,
-				CCCFD6752DC6746E00604904 /* 6.mp4 */,
 				CCCFD65D2DC6723500604904 /* 8.mp4 */,
 				CCCFD65E2DC6723500604904 /* 9.mp4 */,
 				CCCFD65F2DC6723500604904 /* 10.mp4 */,
@@ -391,14 +391,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCCFD6762DC6746E00604904 /* 6.mp4 in Resources */,
+				CCCFD67A2DC676A900604904 /* 6.mp4 in Resources */,
 				CCCFD6522DC6701B00604904 /* 2.mp4 in Resources */,
 				CC7B8AF72DC22BB8006361C2 /* Assets.xcassets in Resources */,
 				CC7B8AF92DC22BB8006361C2 /* LaunchScreen.storyboard in Resources */,
 				CCCFD64E2DC66F6100604904 /* 0.mp4 in Resources */,
 				CC7B8B2E2DC24C66006361C2 /* video_data.json in Resources */,
 				CCCFD6682DC6723500604904 /* 13.mp4 in Resources */,
-				CCCFD6742DC6746500604904 /* 3.mp4 in Resources */,
+				CCCFD6782DC676A100604904 /* 3.mp4 in Resources */,
 				CCCFD6692DC6723500604904 /* 10.mp4 in Resources */,
 				CCCFD66A2DC6723500604904 /* 18.mp4 in Resources */,
 				CCCFD66B2DC6723500604904 /* 16.mp4 in Resources */,
