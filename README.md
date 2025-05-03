@@ -24,8 +24,5 @@
 ---
 
 ## 📮 聯絡資訊
-
-面試者：王昱淇  
-Email: wkiki1124@gmail.com  
 GitHub: https://github.com/YuKi-Wang1124
 
